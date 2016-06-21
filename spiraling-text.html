@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+<script type="text/javascript">
+
+CanvasRenderingContext2D.prototype.fillTextCircle = function(text,x,y,radius,startRotation){
+   this.save();
+   this.translate(x,y);
+   this.rotate(startRotation);
+
+   for(var i=0;i<text.length;i++){
+     var rot = ctx.measureText(text[i]).width / (Math.PI * radius * 2) * Math.PI * 2;
+      this.fillText(text[i],0, -radius);
+      this.rotate(rot);
+     radius += 1;
+   }
+   this.restore();
+}
+
+function randomString(length) {
+    return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
+}
+
+function arrayPush(l) {
+
+   var numbers = [];
+
+   for (var i = 0; i <=l; i++) {
+         
+         var random = randomString(5);
+         var length = numbers.push(random);
+   }
+   return numbers;
+}
+
+var z = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
+var a  = arrayPush(z);
+var b = a.join(" ");
+
+var ctx = document.getElementById('canvas').getContext('2d');
+ctx.font = "bold 30px Serif";
+ctx.fillTextCircle(b,150,150,45,Math.PI / 2);
+</script>
+</body>
+</html>
