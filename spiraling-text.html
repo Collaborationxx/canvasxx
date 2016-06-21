@@ -7,6 +7,7 @@
 <canvas id="canvas" width="500" height="500"></canvas>
 <script type="text/javascript">
 
+//draw spiraling text in canvas
 CanvasRenderingContext2D.prototype.fillTextCircle = function(text,x,y,radius,startRotation){
    this.save();
    this.translate(x,y);
@@ -21,10 +22,12 @@ CanvasRenderingContext2D.prototype.fillTextCircle = function(text,x,y,radius,sta
    this.restore();
 }
 
+//generate random string
 function randomString(length) {
     return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
 }
 
+//push all the random string in array(numbers) depends on random array length (l)
 function arrayPush(l) {
 
    var numbers = [];
@@ -37,13 +40,15 @@ function arrayPush(l) {
    return numbers;
 }
 
-var z = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
+
+var z = Math.floor(Math.random() * (10 - 5 + 1)) + 5; //generate random array length from 5-10
 var a  = arrayPush(z);
 var b = a.join(" ");
 
 var ctx = document.getElementById('canvas').getContext('2d');
 ctx.font = "bold 30px Serif";
 ctx.fillTextCircle(b,150,150,45,Math.PI / 2);
+
 </script>
 </body>
 </html>
